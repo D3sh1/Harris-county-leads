@@ -29,4 +29,4 @@ python src/scraper.py
 Enable GitHub Pages: Settings → Pages → Branch: main → Folder: /dashboard
 ## Automation
 The bot runs automatically every day at 6:00 AM UTC via GitHub Actions.
-═══════════════ END ═══════════════
+
