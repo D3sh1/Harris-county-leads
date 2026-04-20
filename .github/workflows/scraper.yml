@@ -1,0 +1,38 @@
+name: County Scraper — Auto Run
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r src/requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Run scraper
+        run: python src/scraper.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add data/output.json dashboard/index.html data/ghl_export.csv
+          git diff --staged --quiet || git commit -m 'Auto-update: leads refreshed'
+          git push
