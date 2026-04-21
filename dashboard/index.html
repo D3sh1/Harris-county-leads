@@ -1,231 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Lucas County — Motivated Seller Leads</title>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
-    header{background:linear-gradient(135deg,#1e3a5f,#0f172a);padding:2rem;border-bottom:1px solid #1e40af}
-    header h1{font-size:1.6rem;font-weight:700;color:#60a5fa}
-    header p{font-size:.83rem;color:#94a3b8;margin-top:.25rem}
-    .stats{display:flex;gap:1rem;padding:1.25rem 2rem;background:#1e293b;border-bottom:1px solid #334155;flex-wrap:wrap}
-    .stat{flex:1;min-width:110px;background:#0f172a;border-radius:8px;padding:.75rem 1rem;border:1px solid #334155}
-    .stat-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b}
-    .stat-val{font-size:1.6rem;font-weight:700;margin-top:.2rem}
-    .c-blue{color:#60a5fa}.c-red{color:#ef4444}.c-yellow{color:#f59e0b}.c-green{color:#22c55e}
-    .filters{display:flex;gap:.75rem;padding:1rem 2rem;background:#1e293b;border-bottom:1px solid #334155;flex-wrap:wrap;align-items:center}
-    .filters label{font-size:.8rem;color:#94a3b8}
-    .filters input,.filters select{background:#0f172a;border:1px solid #334155;border-radius:6px;color:#e2e8f0;padding:.4rem .75rem;font-size:.83rem;outline:none}
-    .filters input:focus,.filters select:focus{border-color:#3b82f6}
-    .filters button{background:#2563eb;border:none;border-radius:6px;color:#fff;padding:.4rem 1rem;cursor:pointer;font-size:.83rem}
-    .filters button:hover{background:#1d4ed8}
-    .wrap{overflow-x:auto;padding:1.5rem 2rem}
-    table{width:100%;border-collapse:collapse;font-size:.83rem}
-    th{background:#1e293b;color:#94a3b8;text-align:left;padding:.65rem .75rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;user-select:none;position:sticky;top:0}
-    th:hover{color:#60a5fa}
-    th.asc::after{content:' ▲'}th.desc::after{content:' ▼'}
-    td{padding:.6rem .75rem;border-bottom:1px solid #1e293b;vertical-align:top}
-    tr:hover td{background:#1e293b}
-    .badge{display:inline-flex;align-items:center;justify-content:center;width:44px;height:24px;border-radius:12px;font-size:.72rem;font-weight:700}
-    .b-h{background:#7f1d1d;color:#fca5a5}
-    .b-m{background:#78350f;color:#fde68a}
-    .b-l{background:#14532d;color:#86efac}
-    .pills{display:flex;gap:.3rem;flex-wrap:wrap}
-    .pill{font-size:.62rem;padding:.15rem .45rem;border-radius:9999px;font-weight:600;white-space:nowrap}
-    .p-tax{background:#7f1d1d;color:#fca5a5}
-    .p-code{background:#78350f;color:#fde68a}
-    .p-pro{background:#312e81;color:#a5b4fc}
-    .p-lien{background:#1e3a5f;color:#93c5fd}
-    .p-div{background:#4a1d96;color:#ddd6fe}
-    .p-flag{background:#1e293b;color:#94a3b8}
-    .dim{color:#64748b;font-size:.72rem}
-    .empty{text-align:center;padding:4rem;color:#475569}
-    .empty h2{font-size:1.1rem;margin-bottom:.5rem}
-    .empty code{background:#1e293b;padding:.2rem .5rem;border-radius:4px;color:#7dd3fc}
-    footer{text-align:center;padding:1.5rem;font-size:.72rem;color:#475569}
-  </style>
-</head>
-<body>
-<header>
-  <h1>Lucas County — Motivated Seller Leads</h1>
-  <p id="subtitle">Loading leads…</p>
-</header>
-
+<html lang="en"><head><meta charset="UTF-8"/>
+<title>Lucas County Leads</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0}
+header{padding:2rem;background:#1e3a5f;border-bottom:1px solid #1e40af}
+h1{color:#60a5fa}
+.stats{display:flex;gap:1rem;padding:1rem 2rem;background:#1e293b}
+.stat{flex:1;background:#0f172a;padding:1rem;border-radius:8px}
+.stat-val{font-size:2rem;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{background:#1e293b;padding:.6rem;text-align:left;cursor:pointer}
+td{padding:.5rem;border-bottom:1px solid #1e293b}
+.b{display:inline-block;padding:.2rem .5rem;border-radius:10px;font-weight:700}
+.h{background:#7f1d1d;color:#fca5a5}
+.m{background:#78350f;color:#fde68a}
+.l{background:#14532d;color:#86efac}
+</style></head><body>
+<header><h1>Lucas County Leads</h1><p>2026-04-21 08:05 UTC | 0 leads</p></header>
 <div class="stats">
-  <div class="stat"><div class="stat-lbl">Total Leads</div><div class="stat-val c-blue" id="s-total">0</div></div>
-  <div class="stat"><div class="stat-lbl">High ≥70</div><div class="stat-val c-red" id="s-high">0</div></div>
-  <div class="stat"><div class="stat-lbl">Medium 40–69</div><div class="stat-val c-yellow" id="s-med">0</div></div>
-  <div class="stat"><div class="stat-lbl">Low &lt;40</div><div class="stat-val c-green" id="s-low">0</div></div>
+<div class="stat">Total<div class="stat-val">0</div></div>
+<div class="stat">High≥70<div class="stat-val" style="color:#ef4444">0</div></div>
+<div class="stat">Med 40-69<div class="stat-val" style="color:#f59e0b">0</div></div>
+<div class="stat">Low<div class="stat-val" style="color:#22c55e">0</div></div>
 </div>
-
-<div class="filters">
-  <label>Search <input id="q" type="text" placeholder="address, name, doc #…" oninput="filter()" style="margin-left:.4rem;width:210px"/></label>
-  <label>Min score
-    <select id="minScore" onchange="filter()" style="margin-left:.4rem">
-      <option value="0">All</option>
-      <option value="70">70+ High</option>
-      <option value="40">40+ Medium+</option>
-    </select>
-  </label>
-  <label>Category
-    <select id="cat" onchange="filter()" style="margin-left:.4rem">
-      <option value="">All</option>
-      <option value="foreclosure">Foreclosure</option>
-      <option value="tax">Tax</option>
-      <option value="lien">Lien</option>
-      <option value="probate">Probate</option>
-      <option value="judgment">Judgment</option>
-      <option value="divorce">Divorce/BK</option>
-    </select>
-  </label>
-  <button onclick="exportCSV()">⬇ Export CSV</button>
-</div>
-
-<div class="wrap">
-  <table id="tbl">
-    <thead><tr>
-      <th onclick="sort(0)">Score</th>
-      <th onclick="sort(1)">Property Address</th>
-      <th onclick="sort(2)">Grantor (Seller)</th>
-      <th onclick="sort(3)">Grantee (Buyer)</th>
-      <th onclick="sort(4)">Doc Type</th>
-      <th onclick="sort(5)">Doc #</th>
-      <th onclick="sort(6)">Filed</th>
-      <th onclick="sort(7)">Amount</th>
-      <th>Signals</th>
-    </tr></thead>
-    <tbody id="tbody"></tbody>
-  </table>
-  <div id="empty" class="empty" style="display:none">
-    <h2>No leads yet</h2>
-    <p>Run the scraper to populate this dashboard:<br/><br/>
-       <code>python src/scraper.py</code></p>
-  </div>
-</div>
-
-<footer>Lucas County Motivated Seller Lead Scraper &nbsp;|&nbsp; Public records only</footer>
-
+<table><thead><tr><th>Score</th><th>Address</th><th>Owner</th><th>Doc Type</th><th>Filed</th></tr></thead>
+<tbody id="t"></tbody></table>
 <script>
-let DATA = [];
-
-async function loadData() {
-  try {
-    const res = await fetch('../data/output.json');
-    if (!res.ok) throw new Error('not found');
-    const json = await res.json();
-    DATA = Array.isArray(json) ? json : (json.records || []);
-  } catch (e) {
-    DATA = [];
-  }
-  render();
-}
-
-function badge(s){
-  const c = s>=70?'b-h':s>=40?'b-m':'b-l';
-  return `<span class="badge ${c}">${s}</span>`;
-}
-
-function pills(r){
-  const s=r.signals||{}, f=r.flags||[];
-  const p=[];
-  if(s.tax_delinquent)       p.push(`<span class="pill p-tax">Tax Delinquent</span>`);
-  if(s.code_violation)       p.push(`<span class="pill p-code">Code Violation</span>`);
-  if(s.probate_filing)       p.push(`<span class="pill p-pro">Probate</span>`);
-  if(s.multiple_liens)       p.push(`<span class="pill p-lien">Multi-Lien</span>`);
-  if(s.divorce_or_bankruptcy)p.push(`<span class="pill p-div">Divorce/BK</span>`);
-  f.filter(x=>!['Probate / estate','Code violation'].some(k=>x.startsWith(k)))
-   .forEach(x=>p.push(`<span class="pill p-flag">${x}</span>`));
-  return p.length?`<div class="pills">${p.join('')}</div>`:'<span class="dim">—</span>';
-}
-
-function row(r){
-  const addr = r.property_address||r.mail_address||'<span class=dim>—</span>';
-  return `<tr data-score="${r.seller_score||0}"
-              data-cat="${r.doc_category||''}"
-              data-text="${[r.property_address,r.grantor,r.grantee,r.document_number].join(' ').toLowerCase()}">
-    <td>${badge(r.seller_score||0)}</td>
-    <td>${addr}</td>
-    <td>${r.grantor||'<span class=dim>—</span>'}</td>
-    <td class="dim">${r.grantee||'—'}</td>
-    <td class="dim">${r.doc_type_label||'—'}</td>
-    <td class="dim">${r.document_number||'—'}</td>
-    <td class="dim">${r.file_date||'—'}</td>
-    <td class="dim">${r.amount||'—'}</td>
-    <td>${pills(r)}</td>
-  </tr>`;
-}
-
-function render() {
-  const sorted = [...DATA].sort((a,b)=>(b.seller_score||0)-(a.seller_score||0));
-  const total  = sorted.length;
-  const high   = sorted.filter(r=>(r.seller_score||0)>=70).length;
-  const med    = sorted.filter(r=>(r.seller_score||0)>=40 && (r.seller_score||0)<70).length;
-  const low    = sorted.filter(r=>(r.seller_score||0)<40).length;
-
-  document.getElementById('s-total').textContent = total;
-  document.getElementById('s-high').textContent  = high;
-  document.getElementById('s-med').textContent   = med;
-  document.getElementById('s-low').textContent   = low;
-  document.getElementById('subtitle').textContent =
-    `Generated ${new Date().toLocaleString()} | ${total} leads sorted by seller score (highest first)`;
-
-  document.getElementById('tbody').innerHTML = sorted.map(row).join('');
-  document.querySelectorAll('th')[0].classList.add('desc');
-  document.getElementById('empty').style.display = total ? 'none' : 'block';
-}
-
-function filter(){
-  const q   = document.getElementById('q').value.toLowerCase();
-  const min = parseInt(document.getElementById('minScore').value)||0;
-  const cat = document.getElementById('cat').value;
-  let n=0;
-  document.querySelectorAll('#tbody tr').forEach(tr=>{
-    const ok = parseInt(tr.dataset.score)>=min
-            && (!q  || tr.dataset.text.includes(q))
-            && (!cat|| tr.dataset.cat===cat);
-    tr.style.display=ok?'':'none';
-    if(ok)n++;
-  });
-  document.getElementById('empty').style.display=n?'none':'block';
-}
-
-let sortCol=0,sortAsc=false;
-function sort(col){
-  document.querySelectorAll('th').forEach(t=>t.classList.remove('asc','desc'));
-  sortAsc = sortCol===col ? !sortAsc : false;
-  sortCol = col;
-  document.querySelectorAll('th')[col].classList.add(sortAsc?'asc':'desc');
-  const rows=[...document.querySelectorAll('#tbody tr')];
-  rows.sort((a,b)=>{
-    const av=a.cells[col]?.innerText.trim()||'';
-    const bv=b.cells[col]?.innerText.trim()||'';
-    const n=v=>parseFloat(v);
-    const c=isNaN(n(av))||isNaN(n(bv))?av.localeCompare(bv):n(av)-n(bv);
-    return sortAsc?c:-c;
-  });
-  const tb=document.getElementById('tbody');
-  rows.forEach(r=>tb.appendChild(r));
-}
-
-function exportCSV(){
-  const hdr=['Score','Property Address','Grantor','Grantee','Doc Type','Doc #','Filed','Amount',
-             'Tax Delinquent','Code Violation','Probate','Multi-Lien','Divorce/BK','Flags'];
-  const rows=DATA.map(r=>{
-    const s=r.signals||{};
-    return[r.seller_score,r.property_address,r.grantor,r.grantee,r.doc_type_label,
-           r.document_number,r.file_date,r.amount,
-           s.tax_delinquent?1:0,s.code_violation?1:0,s.probate_filing?1:0,
-           s.multiple_liens?1:0,s.divorce_or_bankruptcy?1:0,
-           (r.flags||[]).join(' | ')
-          ].map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',');
-  });
-  const blob=new Blob([[hdr.join(','),...rows].join('\n')],{type:'text/csv'});
-  Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'lucas_leads.csv'}).click();
-}
-
-loadData();
-</script>
-</body>
-</html>
+const D=[];
+document.getElementById('t').innerHTML=D.map(r=>{
+  const s=r.seller_score, c=s>=70?'h':s>=40?'m':'l';
+  return `<tr><td><span class="b ${c}">${s}</span></td>
+  <td>${r.property_address||'—'}</td><td>${r.grantor||'—'}</td>
+  <td>${r.doc_type_label||'—'}</td><td>${r.file_date||'—'}</td></tr>`;
+}).join('');
+</script></body></html>
