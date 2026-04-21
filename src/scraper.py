@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Harris County (Houston, TX) — Motivated Seller Lead Scraper v5
-==============================================================
+Harris County (Houston, TX) — Motivated Seller Lead Scraper v5.1
+================================================================
 Public sources (no login required):
   1. Harris County Tax Sale Listing   — delinquent properties going to auction
   2. Harris County Clerk Foreclosures — lis pendens / foreclosure notices by month
@@ -85,98 +85,65 @@ def scrape_tax_sale():
     soup = BeautifulSoup(r.text, "lxml")
     log.info("Tax Sale page title: %s", soup.title.string if soup.title else "n/a")
 
-    # Log a snippet to understand structure
-    log.info("HTML snippet (first 2000 chars):\n%s", r.text[:2000])
-
-    records = []
-
-    # Try standard table
     tables = soup.find_all("table")
     log.info("Tax Sale: %d table(s) found", len(tables))
 
-    for table in tables:
-        rows = table.find_all("tr")
-        if not rows:
-            continue
-        headers = [clean(c.get_text()) for c in rows[0].find_all(["th", "td"])]
-        log.info("Table headers: %s", headers)
+    records = []
+    current = None
 
-        for row in rows[1:]:
-            cells = [clean(td.get_text()) for td in row.find_all("td")]
-            if len(cells) < 2:
+    for table in tables:
+        for row in table.find_all("tr"):
+            cells = [clean(c.get_text()) for c in row.find_all(["th", "td"])]
+            text  = " ".join(cells)
+
+            # New property starts when we see Account# / Cause#
+            acct  = re.search(r'Account#[:\s]+(\S+)', text)
+            cause = re.search(r'Cause#[:\s]+(\S+)',   text)
+
+            if acct or cause:
+                if current and (current.get("address") or current.get("case_number")):
+                    records.append(current)
+                current = {
+                    "source":         "Harris Co. Tax Sale",
+                    "doc_type":       "TAX_DELINQUENT",
+                    "case_number":    cause.group(1) if cause else "",
+                    "account_number": acct.group(1)  if acct  else "",
+                    "owner":          "",
+                    "address":        "",
+                    "zip":            "",
+                    "filing_date":    "",
+                    "adjudged_value": "",
+                    "minimum_bid":    "",
+                    "tax_years":      "",
+                    "sale_status":    "",
+                    "score":          0,
+                    "signals":        ["tax_delinquency"],
+                }
                 continue
 
-            # Try to map by header position
-            def cell(idx, fallback=""):
-                return cells[idx] if len(cells) > idx else fallback
+            if current is None:
+                continue
 
-            # Headers order from agent research:
-            # Precinct | Minimum Bid | Adjudged Value | Address | Zip Code
-            # But also: Account #, Cause #, Judgment Date, Tax Years, Status, Sale Type
-            rec = {
-                "source":          "Harris Co. Tax Sale",
-                "doc_type":        "TAX_DELINQUENT",
-                "case_number":     "",
-                "owner":           "",
-                "address":         "",
-                "zip":             "",
-                "filing_date":     "",
-                "adjudged_value":  "",
-                "minimum_bid":     "",
-                "tax_years":       "",
-                "sale_status":     "",
-                "score":           0,
-                "signals":         ["tax_delinquency"],
-            }
+            # Parse key-value rows (label in col-0, value in col-1)
+            if len(cells) >= 2:
+                key = cells[0].lower().rstrip(": ")
+                val = cells[1]
+                if   "address"  in key:                      current["address"]        = val
+                elif "zip"      in key:                      current["zip"]            = val
+                elif "owner"    in key or "name" in key:     current["owner"]          = val
+                elif "adjudged" in key:                      current["adjudged_value"] = val
+                elif "minimum"  in key or "bid"  in key:    current["minimum_bid"]    = val
+                elif "judgment" in key and "date" in key:    current["filing_date"]    = val
+                elif "tax year" in key or "years" in key:    current["tax_years"]      = val
+                elif "status"   in key:                      current["sale_status"]    = val
+            elif len(cells) == 1 and current.get("address") == "":
+                line = cells[0]
+                if re.search(r'\d', line) and len(line) > 5:
+                    current["address"] = line
 
-            # Map cells to known fields based on header names
-            for i, h in enumerate(headers):
-                h_low = h.lower()
-                v = cell(i)
-                if "address" in h_low:
-                    rec["address"] = v
-                elif "zip" in h_low:
-                    rec["zip"] = v
-                elif "account" in h_low:
-                    rec["case_number"] = v
-                elif "cause" in h_low:
-                    rec["case_number"] = rec["case_number"] or v
-                elif "adjudged" in h_low:
-                    rec["adjudged_value"] = v
-                elif "minimum" in h_low or "bid" in h_low:
-                    rec["minimum_bid"] = v
-                elif "judgment" in h_low and "date" in h_low:
-                    rec["filing_date"] = v
-                elif "tax year" in h_low or "year" in h_low:
-                    rec["tax_years"] = v
-                elif "status" in h_low:
-                    rec["sale_status"] = v
-                elif "owner" in h_low or "name" in h_low:
-                    rec["owner"] = v
-
-            # If headers didn't map, fall back to positional
-            if not rec["address"] and len(cells) >= 4:
-                rec["address"] = cell(3)
-            if not rec["minimum_bid"] and len(cells) >= 2:
-                rec["minimum_bid"] = cell(1)
-
-            # Add bonus signal if high value
-            try:
-                bid = float(re.sub(r"[^\d.]", "", rec.get("minimum_bid", "") or "0"))
-                if bid > 50000:
-                    rec["signals"].append("high_value")
-            except Exception:
-                pass
-
-            if rec["address"] or rec["case_number"]:
-                records.append(rec)
-
-    # If no tables, try JSON embedded in page
-    if not records:
-        log.info("No table rows — checking for embedded JSON...")
-        json_matches = re.findall(r'\[(\{.*?"address".*?\}.*?)\]', r.text, re.DOTALL | re.IGNORECASE)
-        for m in json_matches[:3]:
-            log.info("Possible JSON fragment: %s", m[:300])
+    # save last record
+    if current and (current.get("address") or current.get("case_number")):
+        records.append(current)
 
     log.info("Tax Sale → %d record(s)", len(records))
     return records
@@ -197,52 +164,39 @@ def scrape_clerk_foreclosures():
 
     soup = BeautifulSoup(r.text, "lxml")
     log.info("Clerk page title: %s", soup.title.string if soup.title else "n/a")
-    log.info("HTML snippet (first 2000 chars):\n%s", r.text[:2000])
 
     vs  = soup.find("input", {"id": "__VIEWSTATE"})
     ev  = soup.find("input", {"id": "__EVENTVALIDATION"})
     vsg = soup.find("input", {"id": "__VIEWSTATEGENERATOR"})
 
-    now = datetime.now()
+    now   = datetime.now()
     year  = str(now.year)
     month = f"{now.month:02d}"
 
-    # Search options found: Year dropdown + Month dropdown
     payload = {
-        "__VIEWSTATE":            vs["value"]  if vs  else "",
-        "__EVENTVALIDATION":      ev["value"]  if ev  else "",
-        "__VIEWSTATEGENERATOR":   vsg["value"] if vsg else "",
-        "ctl00$ctl00$cphMain$cphMain$ddlYear":  year,
-        "ctl00$ctl00$cphMain$cphMain$ddlMonth": month,
-        "ctl00$ctl00$cphMain$cphMain$btnSearch": "Search",
-    }
-
-    # Also try with simpler field names
-    payload_alt = {
-        "__VIEWSTATE":       vs["value"]  if vs  else "",
-        "__EVENTVALIDATION": ev["value"]  if ev  else "",
-        "ddlYear":           year,
-        "ddlMonth":          month,
-        "btnSearch":         "Search",
+        "__VIEWSTATE":          vs["value"]  if vs  else "",
+        "__EVENTVALIDATION":    ev["value"]  if ev  else "",
+        "__VIEWSTATEGENERATOR": vsg["value"] if vsg else "",
+        "ddlYear":              year,
+        "ddlMonth":             month,
+        "btnSearch":            "Search",
     }
 
     log.info("Posting foreclosure search for %s/%s...", month, year)
     r2 = post(FRCL_URL, payload)
     if not r2:
-        r2 = post(FRCL_URL, payload_alt)
-    if not r2:
         return []
 
     soup2 = BeautifulSoup(r2.text, "lxml")
-    log.info("Foreclosure results HTML[:1500]: %s", r2.text[:1500])
-
     records = []
     tables = soup2.find_all("table")
     log.info("Clerk foreclosures: %d table(s) found", len(tables))
 
     for table in tables:
         rows = table.find_all("tr")
-        headers = [clean(c.get_text()) for c in rows[0].find_all(["th","td"])] if rows else []
+        if not rows:
+            continue
+        headers = [clean(c.get_text()) for c in rows[0].find_all(["th", "td"])]
         log.info("Foreclosure table headers: %s", headers)
 
         for row in rows[1:]:
@@ -251,28 +205,28 @@ def scrape_clerk_foreclosures():
                 continue
 
             rec = {
-                "source":      "Harris Co. Clerk Foreclosures",
-                "doc_type":    "FORECLOSURE",
-                "case_number": cells[0] if cells else "",
-                "owner":       cells[1] if len(cells) > 1 else "",
-                "address":     cells[2] if len(cells) > 2 else "",
-                "filing_date": cells[3] if len(cells) > 3 else "",
-                "score":       0,
-                "signals":     ["foreclosure"],
+                "source":         "Harris Co. Clerk Foreclosures",
+                "doc_type":       "FORECLOSURE",
+                "case_number":    cells[0] if cells else "",
+                "owner":          cells[1] if len(cells) > 1 else "",
+                "address":        cells[2] if len(cells) > 2 else "",
+                "filing_date":    cells[3] if len(cells) > 3 else "",
+                "adjudged_value": "",
+                "minimum_bid":    "",
+                "tax_years":      "",
+                "sale_status":    "",
+                "zip":            "",
+                "score":          0,
+                "signals":        ["foreclosure"],
             }
 
-            # Map by headers if available
             for i, h in enumerate(headers):
                 h_low = h.lower()
                 v = cells[i] if i < len(cells) else ""
-                if "address" in h_low:
-                    rec["address"] = v
-                elif "grantor" in h_low or "owner" in h_low or "name" in h_low:
-                    rec["owner"] = v
-                elif "file" in h_low and "date" in h_low:
-                    rec["filing_date"] = v
-                elif "doc" in h_low and "id" in h_low or "number" in h_low:
-                    rec["case_number"] = v
+                if "address"  in h_low:                     rec["address"]     = v
+                elif "grantor" in h_low or "owner" in h_low: rec["owner"]      = v
+                elif "file"    in h_low and "date" in h_low: rec["filing_date"] = v
+                elif "doc"     in h_low or "number" in h_low: rec["case_number"] = v
 
             if rec["case_number"] or rec["owner"] or rec["address"]:
                 records.append(rec)
@@ -409,7 +363,7 @@ def main():
     if args.debug:
         logging.getLogger().setLevel(logging.DEBUG)
 
-    log.info("=== Harris County Scraper v5 starting ===")
+    log.info("=== Harris County Scraper v5.1 starting ===")
     log.info("Days back: %d | Limit: %d", args.days, args.limit)
 
     all_records = []
