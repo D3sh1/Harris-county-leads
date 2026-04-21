@@ -1,37 +1,50 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/>
-<title>Lucas County Leads</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lucas County — Motivated Seller Leads</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0}
-header{padding:2rem;background:#1e3a5f;border-bottom:1px solid #1e40af}
-h1{color:#60a5fa}
-.stats{display:flex;gap:1rem;padding:1rem 2rem;background:#1e293b}
-.stat{flex:1;background:#0f172a;padding:1rem;border-radius:8px}
-.stat-val{font-size:2rem;font-weight:700}
-table{width:100%;border-collapse:collapse;font-size:.85rem}
-th{background:#1e293b;padding:.6rem;text-align:left;cursor:pointer}
-td{padding:.5rem;border-bottom:1px solid #1e293b}
-.b{display:inline-block;padding:.2rem .5rem;border-radius:10px;font-weight:700}
-.h{background:#7f1d1d;color:#fca5a5}
-.m{background:#78350f;color:#fde68a}
-.l{background:#14532d;color:#86efac}
-</style></head><body>
-<header><h1>Lucas County Leads</h1><p>2026-04-21 09:57 UTC | 0 leads</p></header>
-<div class="stats">
-<div class="stat">Total<div class="stat-val">0</div></div>
-<div class="stat">High≥70<div class="stat-val" style="color:#ef4444">0</div></div>
-<div class="stat">Med 40-69<div class="stat-val" style="color:#f59e0b">0</div></div>
-<div class="stat">Low<div class="stat-val" style="color:#22c55e">0</div></div>
-</div>
-<table><thead><tr><th>Score</th><th>Address</th><th>Owner</th><th>Doc Type</th><th>Filed</th></tr></thead>
-<tbody id="t"></tbody></table>
+  body{font-family:Arial,sans-serif;margin:20px;background:#f5f5f5}
+  h1{color:#2c3e50}
+  .meta{color:#666;margin-bottom:16px}
+  table{border-collapse:collapse;width:100%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  th{background:#2c3e50;color:#fff;padding:10px 12px;text-align:left;cursor:pointer}
+  td{padding:9px 12px;border-bottom:1px solid #eee;font-size:.9em}
+  tr:hover td{background:#f0f8ff}
+  .badge{display:inline-block;padding:2px 8px;border-radius:12px;color:#fff;font-size:.8em}
+</style>
+</head>
+<body>
+<h1>🏘 Lucas County — Motivated Seller Leads</h1>
+<p class="meta">Last updated: 2026-04-21 14:16 UTC &nbsp;|&nbsp; Total leads: 0</p>
+<table id="t">
+<thead>
+<tr>
+  <th onclick="sortTable(0)">Score ▼</th>
+  <th onclick="sortTable(1)">Owner</th>
+  <th onclick="sortTable(2)">Address</th>
+  <th onclick="sortTable(3)">Source</th>
+  <th onclick="sortTable(4)">Type</th>
+  <th onclick="sortTable(5)">Date</th>
+  <th onclick="sortTable(6)">Case #</th>
+  <th onclick="sortTable(7)">Signals</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="8" style="text-align:center;padding:30px;color:#999">No leads found — check Actions logs</td></tr>
+</tbody>
+</table>
 <script>
-const D=[];
-document.getElementById('t').innerHTML=D.map(r=>{
-  const s=r.seller_score, c=s>=70?'h':s>=40?'m':'l';
-  return `<tr><td><span class="b ${c}">${s}</span></td>
-  <td>${r.property_address||'—'}</td><td>${r.grantor||'—'}</td>
-  <td>${r.doc_type_label||'—'}</td><td>${r.file_date||'—'}</td></tr>`;
-}).join('');
-</script></body></html>
+function sortTable(col){
+  const t=document.getElementById('t'),rows=[...t.tBodies[0].rows];
+  const asc=t.dataset.sort==col;t.dataset.sort=asc?'':col;
+  rows.sort((a,b)=>{
+    const x=a.cells[col].innerText,y=b.cells[col].innerText;
+    return asc?(isNaN(x)?x>y?1:-1:+x-+y):(isNaN(y)?y>x?1:-1:+y-+x);
+  });
+  rows.forEach(r=>t.tBodies[0].append(r));
+}
+</script>
+</body>
+</html>
