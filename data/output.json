@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-06-01T11:49:58.373541Z",
+  "fetched_at": "2026-06-02T10:48:57.775983Z",
   "source": "Harris County Tax Sale / Clerk Foreclosures",
   "total": 292,
   "records": [
@@ -1125,7 +1125,7 @@
       "case_number": "202321996",
       "account_number": "0552270000035",
       "owner": "",
-      "address": "Adjudged Value: $401,201.00 Minimum Bid: $76,598.52",
+      "address": "Adjudged Value: $401,201.00 Minimum Bid: $76,722.06",
       "zip": "",
       "filing_date": "",
       "adjudged_value": "",
@@ -1147,7 +1147,7 @@
       "zip": "",
       "filing_date": "",
       "adjudged_value": "$401,201.00",
-      "minimum_bid": "$76,598.52",
+      "minimum_bid": "$76,722.06",
       "tax_years": "null - null",
       "sale_status": "",
       "score": 30,
