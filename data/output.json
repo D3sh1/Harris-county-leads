@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-07-13T09:40:21.212385Z",
+  "fetched_at": "2026-07-14T08:19:58.336024Z",
   "source": "Harris County Tax Sale / Clerk Foreclosures",
   "total": 500,
   "records": [
@@ -572,7 +572,7 @@
       "filing_date": "",
       "adjudged_value": "$195,523.00",
       "minimum_bid": "$31,943.16",
-      "tax_years": "-",
+      "tax_years": "null - null",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -608,7 +608,7 @@
       "filing_date": "",
       "adjudged_value": "$127,729.00",
       "minimum_bid": "$5,847.56",
-      "tax_years": "-",
+      "tax_years": "null - null",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -968,42 +968,6 @@
       "filing_date": "",
       "adjudged_value": "$331,199.00",
       "minimum_bid": "$7,877.00",
-      "tax_years": "-",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
-      "case_number": "202483842",
-      "account_number": "1322620060001",
-      "owner": "",
-      "address": "Adjudged Value: $276,845.00 Minimum Bid: $16,114.00",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "",
-      "minimum_bid": "",
-      "tax_years": "",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
-      "case_number": "202483842",
-      "account_number": "",
-      "owner": "",
-      "address": "",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "$276,845.00",
-      "minimum_bid": "$16,114.00",
       "tax_years": "-",
       "sale_status": "",
       "score": 30,
@@ -1869,6 +1833,42 @@
       "adjudged_value": "$175,316.00",
       "minimum_bid": "$17,902.98",
       "tax_years": "2023 - 2025",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202429046",
+      "account_number": "1322620060001",
+      "owner": "",
+      "address": "Adjudged Value: $276,845.00 Minimum Bid: $16,114.00",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "",
+      "minimum_bid": "",
+      "tax_years": "",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202429046",
+      "account_number": "",
+      "owner": "",
+      "address": "",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "$276,845.00",
+      "minimum_bid": "$16,114.00",
+      "tax_years": "null - null",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -2958,42 +2958,6 @@
     {
       "source": "Harris Co. Tax Sale",
       "doc_type": "TAX_DELINQUENT",
-      "case_number": "202535821",
-      "account_number": "1253180060011",
-      "owner": "",
-      "address": "Adjudged Value: $255,996.00 Minimum Bid: $4,373.30",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "",
-      "minimum_bid": "",
-      "tax_years": "",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
-      "case_number": "202535821",
-      "account_number": "",
-      "owner": "",
-      "address": "",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "$255,996.00",
-      "minimum_bid": "$4,373.30",
-      "tax_years": "-",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
       "case_number": "202558257",
       "account_number": "1291230010018",
       "owner": "",
@@ -3849,6 +3813,42 @@
       "adjudged_value": "",
       "minimum_bid": "",
       "tax_years": "2009 - 2024",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202535821",
+      "account_number": "1253180060011",
+      "owner": "",
+      "address": "Adjudged Value: $255,996.00 Minimum Bid: $4,373.30",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "",
+      "minimum_bid": "",
+      "tax_years": "",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202535821",
+      "account_number": "",
+      "owner": "",
+      "address": "",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "$255,996.00",
+      "minimum_bid": "$4,373.30",
+      "tax_years": "null - null",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -5984,78 +5984,6 @@
       "doc_type": "TAX_DELINQUENT",
       "case_number": "21DCV0886",
       "account_number": "1184450010010",
-      "owner": "",
-      "address": "",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "",
-      "minimum_bid": "",
-      "tax_years": "",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
-      "case_number": "21DCV0886",
-      "account_number": "",
-      "owner": "",
-      "address": "",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "",
-      "minimum_bid": "",
-      "tax_years": "-",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
-      "case_number": "21DCV0886",
-      "account_number": "1021780000009",
-      "owner": "",
-      "address": "",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "",
-      "minimum_bid": "",
-      "tax_years": "",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
-      "case_number": "21DCV0886",
-      "account_number": "",
-      "owner": "",
-      "address": "",
-      "zip": "",
-      "filing_date": "",
-      "adjudged_value": "",
-      "minimum_bid": "",
-      "tax_years": "-",
-      "sale_status": "",
-      "score": 30,
-      "signals": [
-        "tax_delinquency"
-      ]
-    },
-    {
-      "source": "Harris Co. Tax Sale",
-      "doc_type": "TAX_DELINQUENT",
-      "case_number": "21DCV0886",
-      "account_number": "0960660000006",
       "owner": "",
       "address": "",
       "zip": "",
@@ -8997,6 +8925,78 @@
       "adjudged_value": "",
       "minimum_bid": "",
       "tax_years": "2002 - 2006",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202030881",
+      "account_number": "1215250180004",
+      "owner": "",
+      "address": "",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "",
+      "minimum_bid": "",
+      "tax_years": "",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202030881",
+      "account_number": "",
+      "owner": "",
+      "address": "",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "",
+      "minimum_bid": "",
+      "tax_years": "2002 - 2006",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202310715",
+      "account_number": "0951350000012",
+      "owner": "",
+      "address": "Adjudged Value: $224,316.00 Minimum Bid: $36,643.24",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "",
+      "minimum_bid": "",
+      "tax_years": "",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202310715",
+      "account_number": "",
+      "owner": "",
+      "address": "",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "$224,316.00",
+      "minimum_bid": "$36,643.24",
+      "tax_years": "2018 - 2024",
       "sale_status": "",
       "score": 30,
       "signals": [
