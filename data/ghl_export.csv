@@ -243,8 +243,6 @@ owner,address,zip,source,doc_type,filing_date,case_number,adjudged_value,minimum
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202509791,,,-,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202517289,,,,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202517289,,,-,,30,tax_delinquency
-,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202521106,,,,,30,tax_delinquency
-,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202521106,,,-,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202524797,,,,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202524797,,,-,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202528533,,,,,30,tax_delinquency
@@ -263,6 +261,8 @@ owner,address,zip,source,doc_type,filing_date,case_number,adjudged_value,minimum
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202483544,"$300,685.00","$25,670.87",2023 - 2024,,30,tax_delinquency
 ,"Adjudged Value: $92,267.00 Minimum Bid: $39,663.35",,Harris Co. Tax Sale,TAX_DELINQUENT,,202505493,,,,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202505493,"$92,267.00","$39,663.35",2006 - 2024,,30,tax_delinquency
+,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202521106,,,,,30,tax_delinquency
+,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202521106,,,null - null,,30,tax_delinquency
 ,"Adjudged Value: $230,201.00 Minimum Bid: $30,000.00",,Harris Co. Tax Sale,TAX_DELINQUENT,,201876732,,,,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,201876732,"$230,201.00","$30,000.00",2017 - 2023,,30,tax_delinquency
 ,"Adjudged Value: $279,898.00 Minimum Bid: $29,639.24",,Harris Co. Tax Sale,TAX_DELINQUENT,,202208446,,,,,30,tax_delinquency
