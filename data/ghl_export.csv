@@ -498,4 +498,4 @@ owner,address,zip,source,doc_type,filing_date,case_number,adjudged_value,minimum
 ,"Adjudged Value: $147,503.00 Minimum Bid: $2,878.03",,Harris Co. Tax Sale,TAX_DELINQUENT,,202533585,,,,,30,tax_delinquency
 ,,,Harris Co. Tax Sale,TAX_DELINQUENT,,202533585,"$147,503.00","$2,878.03",2023 - 2024,,30,tax_delinquency
 ,"Adjudged Value: $115,663.00 Minimum Bid: $29,643.98",,Harris Co. Tax Sale,TAX_DELINQUENT,,201990599,,,,,30,tax_delinquency
-,,,Harris Co. Tax Sale,TAX_DELINQUENT,,201990599,"$115,663.00","$29,643.98",-,,30,tax_delinquency
+,,,Harris Co. Tax Sale,TAX_DELINQUENT,,201990599,"$115,663.00","$29,643.98",null - null,,30,tax_delinquency

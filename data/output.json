@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-07-21T08:39:28.008319Z",
+  "fetched_at": "2026-07-22T08:38:41.679125Z",
   "source": "Harris County Tax Sale / Clerk Foreclosures",
   "total": 500,
   "records": [
@@ -8996,7 +8996,7 @@
       "filing_date": "",
       "adjudged_value": "$115,663.00",
       "minimum_bid": "$29,643.98",
-      "tax_years": "-",
+      "tax_years": "null - null",
       "sale_status": "",
       "score": 30,
       "signals": [
