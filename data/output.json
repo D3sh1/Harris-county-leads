@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-11-12T14:58:09.293364Z",
+  "fetched_at": "2026-11-13T14:23:50.801587Z",
   "source": "Harris County Tax Sale / Clerk Foreclosures",
-  "total": 314,
+  "total": 316,
   "records": [
     {
       "source": "Harris Co. Tax Sale",
@@ -284,7 +284,7 @@
       "filing_date": "",
       "adjudged_value": "$5,728.00",
       "minimum_bid": "$5,728.00",
-      "tax_years": "-",
+      "tax_years": "2002 - 2025",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -320,7 +320,7 @@
       "filing_date": "",
       "adjudged_value": "$2,992,234.00",
       "minimum_bid": "$28,612.03",
-      "tax_years": "-",
+      "tax_years": "2018 - 2025",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -356,7 +356,7 @@
       "filing_date": "",
       "adjudged_value": "$77,217.00",
       "minimum_bid": "$28,478.83",
-      "tax_years": "-",
+      "tax_years": "2010 - 2025",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -392,7 +392,43 @@
       "filing_date": "",
       "adjudged_value": "$634,218.00",
       "minimum_bid": "$38,086.93",
-      "tax_years": "-",
+      "tax_years": "2024 - 2025",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202489814",
+      "account_number": "1149730010012",
+      "owner": "",
+      "address": "",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "",
+      "minimum_bid": "",
+      "tax_years": "",
+      "sale_status": "",
+      "score": 30,
+      "signals": [
+        "tax_delinquency"
+      ]
+    },
+    {
+      "source": "Harris Co. Tax Sale",
+      "doc_type": "TAX_DELINQUENT",
+      "case_number": "202489814",
+      "account_number": "",
+      "owner": "",
+      "address": "",
+      "zip": "",
+      "filing_date": "",
+      "adjudged_value": "",
+      "minimum_bid": "",
+      "tax_years": "2024 - 2025",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -428,7 +464,7 @@
       "filing_date": "",
       "adjudged_value": "$74,380.00",
       "minimum_bid": "$10,390.87",
-      "tax_years": "-",
+      "tax_years": "2020 - 2025",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -464,7 +500,7 @@
       "filing_date": "",
       "adjudged_value": "$82,288.00",
       "minimum_bid": "$26,521.75",
-      "tax_years": "-",
+      "tax_years": "2005 - 2025",
       "sale_status": "",
       "score": 30,
       "signals": [
@@ -5432,7 +5468,7 @@
       "filing_date": "",
       "adjudged_value": "$61,560.00",
       "minimum_bid": "$7,669.67",
-      "tax_years": "-",
+      "tax_years": "null - null",
       "sale_status": "",
       "score": 30,
       "signals": [
